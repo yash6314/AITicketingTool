@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Ticket Desk</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">AT</span>
+          <div>
+            <strong>AI Ticket Desk</strong>
+            <small>Admin console</small>
+          </div>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="tickets">Tickets</button>
+          <button class="nav-item" data-view="approvals">Approvals</button>
+          <button class="nav-item" data-view="emails">Review</button>
+          <button class="nav-item" data-view="ingest">Test Ingest</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h1 id="pageTitle">Tickets</h1>
+            <p id="pageSubtitle">Review tickets, drafts, approvals, and send states.</p>
+          </div>
+          <button id="refreshBtn" class="icon-button" title="Refresh">R</button>
+        </header>
+
+        <section id="notice" class="notice hidden"></section>
+
+        <section id="ticketsView" class="view active">
+          <div id="statsGrid" class="stats-grid"></div>
+          <div class="split">
+            <div class="panel list-panel">
+              <div class="panel-header">
+                <h2>Open Work</h2>
+                <select id="statusFilter">
+                  <option value="">All status</option>
+                  <option value="open">Open</option>
+                  <option value="in_progress">In progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div id="ticketList" class="stack"></div>
+            </div>
+            <div id="ticketDetail" class="panel detail-panel empty">
+              Select a ticket to review details.
+            </div>
+          </div>
+        </section>
+
+        <section id="approvalsView" class="view">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>Pending Approval</h2>
+            </div>
+            <div id="approvalList" class="stack"></div>
+          </div>
+        </section>
+
+        <section id="emailsView" class="view">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>Review Queue</h2>
+            </div>
+            <div id="emailList" class="stack"></div>
+          </div>
+        </section>
+
+        <section id="ingestView" class="view">
+          <form id="ingestForm" class="panel form-panel">
+            <div class="panel-header">
+              <h2>Manual Email Test</h2>
+            </div>
+            <div class="form-grid">
+              <label>
+                Message ID
+                <input name="message_id" required placeholder="msg_001">
+              </label>
+              <label>
+                Conversation ID
+                <input name="conversation_id" required placeholder="conv_001">
+              </label>
+              <label>
+                Sender Email
+                <input name="sender_email" type="email" required placeholder="user@example.com">
+              </label>
+              <label>
+                Subject
+                <input name="subject" required placeholder="ID card not working">
+              </label>
+              <label class="wide">
+                Body
+                <textarea name="body" required rows="7" placeholder="My ID card is not working, please help."></textarea>
+              </label>
+            </div>
+            <div class="actions">
+              <button type="submit" class="primary">Ingest Email</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
