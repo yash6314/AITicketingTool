@@ -13,7 +13,11 @@ from app.routes import approval_routes
 # 👇 import models
 from app.models import email, ticket, reply
 
-app = FastAPI()
+app = FastAPI(
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
+)
 app.include_router(email_routes.router)
 app.include_router(ticket_routes.router)
 app.include_router(approval_routes.router)
